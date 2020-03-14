@@ -1,9 +1,8 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: docker-hub-via-jenkins
-  labels:
-    app: latest
 spec:
   replicas: 3
   template:
@@ -16,7 +15,9 @@ spec:
         image: superleague16789/sl-kub-pankaj1:latest
         ports:
         - containerPort: 8080
+...
 
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -29,3 +30,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 9339
+...
