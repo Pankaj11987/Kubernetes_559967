@@ -1,7 +1,7 @@
 pipeline {
    agent any 
   environment {
-    PROJECT = 'Pankaj-superleague-devops'
+    PROJECT = 'pankaj-superleague-devops'
     CLUSTER_NAME = 'sl-kub-Pankaj_Cluster'
     CLUSTER_ZONE = 'us-east1-d'
     CREDENTILS_ID = 'sl-kub-pankaj'
