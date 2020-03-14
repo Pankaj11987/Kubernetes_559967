@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: docker-hub-via-jenkins
-        image: superleague16789/sl-kub-pankaj1:latest
+        image: superleague16789/sl-kub-pankaj1:tagversion
         ports:
         - containerPort: 8080
 ...
