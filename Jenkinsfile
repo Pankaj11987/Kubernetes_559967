@@ -22,4 +22,4 @@ pipeline {
         echo "Deployment Completed Successfully"
                           }
 }
-    
+}   
