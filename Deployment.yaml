@@ -5,6 +5,9 @@ metadata:
   name: docker-hub-via-jenkins
 spec:
   replicas: 3
+  selectors:
+      matchLabels: 
+      app: docker-hub-via-jenkins 
   template:
     metadata:
       labels:
