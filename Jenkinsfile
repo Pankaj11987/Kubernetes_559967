@@ -1,7 +1,7 @@
 pipeline {
  agent any
  environment {
- PROJECT = 'pankaj-superleague-devops'
+ PROJECT = 'gcr-sl-devops'
     
  CLUSTER_NAME = 'sl-kub-pankaj_cluster'
     
@@ -52,7 +52,7 @@ pipeline {
  step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME,
 location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments:
 true])
- echo "Deployment Finished"
+ echo "Deployment completed"
  }
  }
  }
