@@ -1,16 +1,16 @@
 pipeline {
    agent any 
   environment {
-    PROJECT = 'SL-Kub-Pankaj'
-    CLUSTER_NAME = 'SL-Kub-Pankaj_Cluster'
+    PROJECT = 'Pankaj-superleague-devops'
+    CLUSTER_NAME = 'sl-kub-Pankaj_Cluster'
     CLUSTER_ZONE = 'us-east1-d'
-    CREDENTILS_ID = 'SL-Kub-Pankaj'
+    CREDENTILS_ID = 'sl-kub-pankaj'
   }
      stage('Deploy Dev') {
        steps{
         echo "Deployment is in progress"
         sh ls-ltr
-        sh("sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml")
+        sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml" 
         step([$class: 'KubernetesEngineBuilder',
         namespace: "${env.BRANCH_NAME}", 
         projectId: env.PROJECT, 
