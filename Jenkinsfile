@@ -5,24 +5,19 @@ pipeline {
     CLUSTER_NAME = 'sl-kub-pankaj_cluster'
     CLUSTER_ZONE = 'us-east1-d'
     CREDENTILS_ID = 'sl-kub-pankaj'
-  }
+               }
    stages {
-     stage('Deploy Dev') {
-       steps
-             {
-        echo "Deployment is in progress"
-        sh ls-ltr
-        sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml" 
-        step([$class: 'KubernetesEngineBuilder',
-        namespace: "${env.BRANCH_NAME}", 
-        projectId: env.PROJECT, 
-        clusterName: env.CLUSTER, 
-        zone: env.CLUSTER_ZONE, 
-        manifestPattern: 'k8s/services', 
-        credentialsId: env.JENKINS_CRED, 
-        verifyDeployments: false])
-        echo "Deployment Completed Successfully"
-                    }
-}
-}   
+        stage('Deploy to GKE') {
+            steps{
+                step([
+                $class: 'KubernetesEngineBuilder',
+                projectId: env.PROJECT_ID,
+                clusterName: env.CLUSTER_NAME,
+                location: env.LOCATION,
+                manifestPattern: 'manifest.yaml',
+                credentialsId: env.CREDENTIALS_ID,
+                verifyDeployments: true])
+            }
+        }
+    }
 }
