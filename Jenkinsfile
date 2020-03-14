@@ -27,7 +27,7 @@ pipeline {
  stage("Build image") {
  steps {
  script {
- myapp = docker.build("superleague16789/panaceaK8:${env.BUILD_ID}")
+ myapp = docker.build("superleague16789/sl-kub-pankaj1:${env.BUILD_ID}")
  }
  }
  }
