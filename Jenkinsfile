@@ -2,12 +2,9 @@ pipeline {
  agent any
  environment {
  PROJECT = 'gcr-sl-devops'
-    
  CLUSTER_NAME = 'sl-kub-pankaj_cluster'
-    
  CLUSTER_ZONE = 'us-east1-d'
-    
- CREDENTILS_ID = 'sl-kub-pankaj'
+  CREDENTILS_ID = 'sl-kub-pankaj'
  }
  stages {
  stage("Checkout code") {
@@ -49,8 +46,8 @@ pipeline {
  sh 'ls -ltr'
  sh 'pwd'
  sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
- step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME,
-location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments:
+ step([$class: 'KubernetesEngineBuilder', projectId: pankaj-superleague-devops, clusterName: env.CLUSTER_NAME,
+location: us-east1-d, manifestPattern: 'deployment.yaml', credentialsId: sl-kub-pankaj, verifyDeployments:
 true])
  echo "Deployment completed"
  }
