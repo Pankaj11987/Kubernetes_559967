@@ -46,7 +46,9 @@ pipeline {
  echo "Deployment started"
  sh 'ls -ltr'
  sh 'pwd'
- kubernetesDeploy{configs: "deployment.yaml", kubeConfigId: "sl-kub-cre"}
+ sh "sed -i 's/tagversion/${env.BUILD_ID}/g' deployment.yaml"
+ step([$class: 'KubernetesEngineBuilder', projectId: pankaj-superleague-devops, clusterName: env.CLUSTER_NAME,
+ location: us-east1-d, manifestPattern: 'deployment.yaml', credentialsId: sl-kub-pankaj, verifyDeployments: true])
  echo "Deployment completed"
  }
  }
