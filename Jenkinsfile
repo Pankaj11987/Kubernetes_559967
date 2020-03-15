@@ -4,7 +4,7 @@ pipeline {
  PROJECT = 'gcr-sl-devops'
  CLUSTER_NAME = 'sl-kub-pankaj_cluster'
  CLUSTER_ZONE = 'us-east1-d'
-  CREDENTILS_ID = 'sl-kub-pankaj'
+  CREDENTILS_ID = 'sl-kub-cre'
  }
  stages {
  stage("Checkout code") {
@@ -27,7 +27,7 @@ pipeline {
  stage("Build image") {
  steps {
  script {
- myapp = docker.build("superleague16789/sl-kub-pankaj1:${env.BUILD_ID}")
+ myapp = docker.build("superleague16789/sl-kub-pan:${env.BUILD_ID}")
  }
  }
  }
@@ -36,6 +36,7 @@ pipeline {
  script {
  docker.withRegistry('https://registry.hub.docker.com', 'Docker-Hub') {
  myapp.push("${env.BUILD_ID}")
+ echo $env.BUILD_ID
  }
  }
  }
